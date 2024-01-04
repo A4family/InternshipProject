@@ -16,7 +16,7 @@ class AdminDataDetailsController extends Controller
      */
     public function showLoginForm()
     {
-        return view('backend.adminLogin');
+        return view('backend.admin-login');
     }
 
     /**

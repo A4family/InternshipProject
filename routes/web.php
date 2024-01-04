@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDataDetailsController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PasswordResetController;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,23 @@ Route::post('/admin-logout', [AdminDataDetailsController::class, 'logout'])->nam
 
 
 
-                //admin dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+                //Admin Dsahboard routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Route::get('/admin-category', [CategoryController::class, 'index'])->name('category.and.subcategory');
+    // Route::get('/admin-category-add', [CategoryController::class, 'create'])->name('add.category.form');
+    // Route::post('/admin-category-add/insert', [CategoryController::class, 'store'])->name('admin.insert.category');
+    // Route::get('/admin-category-edit/{category_id}', [CategoryController::class, 'edit'])->name('admin.edit.category.form');
+    // Route::post('/admin-category-edit/update/{category_id}', [CategoryController::class, 'update'])->name('admin.edit.category');
+    // Route::get('/admin-delete-category/{category_id}', [CategoryController::class, 'destroy'])->name('admin.delete.category');
+    Route::resource('admin-category', CategoryController::class, ['except' => ['destroy']]);
+    Route::get('admin-category/{id}/destroy', [CategoryController::class, 'destroy'])->name('admin-category.destroy');
+});
+
+
+
+
 
 
                 //Forgot Password Routess

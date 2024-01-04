@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <title>Dashboard-Login</title>
-    
-    @vite(['resources/css/admin-login.css'])
+@extends('backend.layouts.login-template')
 
-</head>
-<body>
-    <section class="main-section">
-        <div class="form-banner">
-            <div class="img-place">
-                <img class="image" src="{{ URL('images/authenticate.jpg') }}" alt="Authenticate" srcset="">
-            </div>
+@section('content')
             <div class="form-place">
                 <span class="login-dashboard-text">Login to Dashboard</span>
                 <form action="/admin-validate" method="POST" autocomplete="off">
@@ -48,7 +33,6 @@
                 </span>
 
             </div>
-        </div>
-    </section>
-</body>
-</html>
+@endsection
+
+

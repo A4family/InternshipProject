@@ -1,0 +1,123 @@
+.add-button-container{
+    padding: 10px;
+}
+
+.add-button-container>a>button{
+    padding: 10px;
+    width: 20%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(61,81,181);
+    color: linear-gradient(313deg, rgba(61,81,181,1) 0%, rgba(77,103,255,1) 52%, rgba(92,137,180,1) 100%);
+    border: 1px solid rgb(61,81,181);;
+}
+
+.add-button-container>a>button:hover{
+    background: rgb(61,81,181);
+    background: linear-gradient(313deg, rgba(61,81,181,1) 0%, rgba(77,103,255,1) 52%, rgba(92,137,180,1) 100%);
+    color: white;
+}
+
+.display-data-container{
+    padding: 10px;
+}
+
+.display-data-container>span{
+    font-size: 24px;
+}
+
+.table-container{
+    padding: 10px;
+}
+
+.table-container>table, th, td{
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    background-color: whitesmoke;
+}
+
+.table-container>table{
+    width: 100%;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.form-container{
+    padding: 10px;
+    width: 40%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+
+.form-container>span{
+    letter-spacing: 1px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(61,81,181);
+}
+
+.form-container>form{
+    margin-top: 5%;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.form-container>form>input{
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 10px;
+    width: 100%; 
+    border: 1px solid rgb(61,81,181);
+    background: white;
+    color: rgb(61,81,181);
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+    background: rgb(61,81,181);
+    color: white;
+}
+
+input[type=text]:focus{
+    border-color: rgb(61,81,181);
+}
+
+::placeholder{
+    color: rgb(61,81,181);
+}
+
+
+
+.message{
+    color: red;
+    font-size: 18px;
+}
+
+select{
+    padding: 10px;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 10px;
+    color: rgb(61,81,181);
+}
+
+button{
+    padding: 10px;
+    font-size: 14px;
+    width: 140px;
+    border: 1px solid rgb(61,81,181);
+    color: rgb(61,81,181);
+    border-radius: 5px;
+}
+
+button:hover{
+    cursor: pointer;
+    background: rgb(61,81,181);
+    color: white;
+}

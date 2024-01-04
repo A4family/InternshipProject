@@ -6,9 +6,8 @@
     <div class="activities">
         <div class="navigation">
             <ul>
-                <a href=""><li><i class="fa-solid fa-layer-group"></i></i> Dashboard</li></a>
-                <a href=""><li><i class="fa-solid fa-layer-group"></i></i> Category</li></a>
-                <a href=""><li><i class="fa-solid fa-layer-group"></i></i> Sub-category</li></a>
+                <a href={{ route('admin.dashboard') }}><li><i class="fa-solid fa-layer-group"></i></i> Dashboard</li></a>
+                <a href={{ route('admin-category.index') }}><li><i class="fa-solid fa-layer-group"></i></i> Category</li></a>
                 <a href=""><li><i class="fa-solid fa-layer-group"></i></i> Users</li></a>
                 <a href=""><li><i class="fa-solid fa-layer-group"></i></i> Admins</li></a>
             </ul>

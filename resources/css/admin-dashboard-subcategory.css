@@ -1,0 +1,45 @@
+.category-name-container{
+    font-size: 24px;
+    letter-spacing: 1px;
+    padding: 10px;
+}
+
+.category-name-container>span{
+    color: red;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.table-container{
+    padding: 10px;
+}
+
+.table-container>table, th, td{
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    background-color: whitesmoke;
+}
+
+.table-container>table{
+    width: 100%;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+button{
+    padding: 10px;
+    font-size: 14px;
+    width: 140px;
+    border: 1px solid rgb(61,81,181);
+    color: rgb(61,81,181);
+    border-radius: 5px;
+}
+
+button:hover{
+    cursor: pointer;
+    background: rgb(61,81,181);
+    color: white;
+}

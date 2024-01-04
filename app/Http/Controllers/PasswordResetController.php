@@ -23,7 +23,7 @@ class PasswordResetController extends Controller
     public function index()
     {
         //
-        return view('backend.forgotPassword');
+        return view('backend.forgot-password');
     }
 
 
@@ -31,9 +31,6 @@ class PasswordResetController extends Controller
     public function sendResetMail(ForgotPasswordMailValidator $request)
     {
         $token = Str::random(64);
-
-        // dd($request->validated()['email']);
-
 
         try{
             DB::table('password_reset_tokens')->insert([
@@ -51,7 +48,7 @@ class PasswordResetController extends Controller
             
     
         }catch(\Exception $e){
-            // dd($e);
+            
         }
     }
 

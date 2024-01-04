@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    @vite(['resources/css/admin-dashboard.css', 'resources/css/side-nav.css'])
-    <title>Dashboard</title>
-</head>
-<body>
-    <section>
-        <div class="side-nav">
-            @include('commonComponents.side-nav')
-        </div>
-        <div class="side-container">
-            @include('commonComponents.bread-crumb')
-            <div class="content-container">
-                <div class="statistics">
-                    <div class="stats-box">asdasd</div>
-                    <div class="stats-box">asdasd</div>
-                    <div class="stats-box">asdasd</div>
-                    <div class="stats-box">asdasd</div>
-                </div>
-            </div>
-        </div>
-    </section>
-</body>
-</html>
+@extends('backend.layouts.dashboard-template')
+
+
+@section('vite-resource')
+@vite(['resources/css/admin-dashboard.css', 'resources/css/side-nav.css'])
+@endsection
+
+@section('page-title')
+    Dashboard
+@endsection
+
+@section('bread-crumb')
+    Dashboard
+@endsection
+
+@section('content')
+<div class="statistics">
+    <div class="stats-box">asdasd</div>
+    <div class="stats-box">asdasd</div>
+    <div class="stats-box">asdasd</div>
+    <div class="stats-box">asdasd</div>
+</div>
+@endsection

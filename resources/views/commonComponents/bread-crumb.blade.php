@@ -1,4 +1,4 @@
 <div class="bread-crumb-banner">
-    <span>Dashboard</span>
+    <span>@yield('bread-crumb')</span>
     <span>{{ auth()->user()->username }}</span>
 </div>

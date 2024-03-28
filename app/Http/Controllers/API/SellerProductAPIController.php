@@ -12,7 +12,14 @@ use Illuminate\Support\Facades\Log;
 
 class SellerProductAPIController extends Controller
 {
-    protected $productRepository;
+    /**
+     * @var SellerProductRepositoryInterface
+     */
+    protected SellerProductRepositoryInterface $productRepository;
+
+    /**
+     * @param SellerProductRepositoryInterface $productRepository
+     */
     public function __construct(SellerProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
@@ -26,6 +33,7 @@ class SellerProductAPIController extends Controller
     {
         try {
             $products = $this->productRepository->getAll();
+
             return Response(['status' => '200', 'products' => $products], 200);
         }catch (\Exception $e){
             Log::error('Caught Exception: '. $e);

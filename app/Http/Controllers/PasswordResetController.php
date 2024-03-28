@@ -31,13 +31,17 @@ class PasswordResetController extends Controller
             return view('backend.forgot-password');
         }catch (\Exception $e){
             Log::error('Caught Exception: ' . $e->getMessage());
-            Log::error('Exception details: ' . json_encode($e->getTrace(), JSON_PRETTY_PRINT));
+            Log::error('Exception details: ' . $e);
             throw $e;
         }
     }
 
 
-    //send reset mail to the user
+    /**
+     * Send reset mail to user
+     * @param ForgotPasswordRequest $request
+     * @return RedirectResponse
+     */
     public function sendResetMail(ForgotPasswordRequest $request): RedirectResponse
     {
         $token = Str::random(64);
@@ -61,6 +65,7 @@ class PasswordResetController extends Controller
 
 
     /**
+     * Display form for password submission
      * @throws \Exception
      */
     public function showNewPasswordForm(string $token): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -76,6 +81,7 @@ class PasswordResetController extends Controller
 
 
     /**
+     * Store new password
      * @param ResetPasswordRequest $request
      * @return string|RedirectResponse
      * @throws \Exception
@@ -94,7 +100,7 @@ class PasswordResetController extends Controller
         return redirect()->route('admin.login')->with('message', 'Password successfully updated!!');
         }catch(\Exception $e){
             Log::error('Caught Exception: ' . $e->getMessage());
-            Log::error('Exception details: ' . json_encode($e->getTrace(), JSON_PRETTY_PRINT));
+            Log::error('Exception details: ' . $e);
             throw $e;
         }
     }

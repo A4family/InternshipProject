@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->string('image_path');
-            $table->morphs('imageable');
-            $table->timestamps();
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->string('status')->default('Pending')->after('price');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };

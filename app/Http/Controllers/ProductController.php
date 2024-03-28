@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    private  $productRepository;
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private ProductRepositoryInterface $productRepository;
 
+    /**
+     * @param ProductRepositoryInterface $productRepository
+     */
     public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
     }
+
     /**
      * Display a listing of the resource.
      * @throws \Exception
@@ -92,7 +99,7 @@ class ProductController extends Controller
     }
 
     /**
-     * List products acording to category
+     * List products according to category
      * @param string $categoryId
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */

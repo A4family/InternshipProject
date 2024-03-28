@@ -3,17 +3,40 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductCheckoutRequest;
+use App\Repositories\Interfaces\CheckoutRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
-class DashboardController extends Controller
+class CheckoutController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @var CheckoutRepositoryInterface
      */
-    public function index()
+    protected $checkoutRepository;
+    public function __construct(CheckoutRepositoryInterface $checkoutRepository)
     {
-        return view('backend.index');
+        $this->checkoutRepository = $checkoutRepository;
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param ProductCheckoutRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @throws \Exception
+     */
+    public function index(ProductCheckoutRequest $request)
+    {
+        try {
+            $checkoutProduct = $this->checkoutRepository->getCheckoutProducts($request->product_id);
+            $quantity = $request->quantity;
+            return view('userend.checkout-page', compact('checkoutProduct', 'quantity'));
+
+        }catch (\Exception $e){
+            Log::error('Caught Exception: ' . $e->getMessage());
+            Log::error('Exception Details: ' . $e);
+            throw $e;
+        }
     }
 
     /**

@@ -17,15 +17,28 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    protected $userRepository;
-    private $authService;
+    /**
+     * @var UserRepositoryInterface
+     */
+    protected UserRepositoryInterface $userRepository;
 
+    /**
+     * @var AuthService
+     */
+    private AuthService $authService;
+
+    /**
+     * @param UserRepositoryInterface $userRepository
+     * @param AuthService $authService
+     */
     public function __construct(UserRepositoryInterface $userRepository, AuthService $authService)
     {
         $this->userRepository = $userRepository;
         $this->authService = $authService;
     }
+
     /**
+     * Display form for user login
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      * @throws \Exception
      */

@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Log;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    /**
+     * FInd particular product
+     * @param string $productId
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null
+     * @throws \Exception
+     */
     public function show(string $productId): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null
     {
         try {
@@ -21,10 +27,26 @@ class ProductRepository implements ProductRepositoryInterface
         }
     }
 
+
+    /**
+     * Fetch product of particular category
+     * @param string $categoryId
+     * @return array
+     * @throws \Exception
+     */
     public function categoryProductList(string $categoryId): array
     {
         try {
-            $products = Product::where('category_id', $categoryId)->paginate(10);
+            $categoryIds = $this->getAllChildrenCategory($categoryId);
+
+            $categoryIds[] = $categoryId;
+
+            $products = Product::whereHas('category', function ($query) use ($categoryIds) {
+                $query->whereIn('id', $categoryIds);
+            })->paginate(10);
+
+            //$products = Product::where('category_id', $categoryId)->paginate(10);
+
             $categoryName = Category::findOrFail($categoryId)->category_name;
 
             return [
@@ -36,5 +58,24 @@ class ProductRepository implements ProductRepositoryInterface
             Log::error('Exception Details: ' . $e);
             throw $e;
         }
+    }
+
+
+    /**
+     * fetch all child category
+     * @param $parentId
+     * @return array
+     */
+    public function getAllChildrenCategory($parentId)
+    {
+        $childrenIds = Category::where('parent_id', $parentId)->pluck('id')->toArray();
+
+        $allChildrenIds = $childrenIds;
+
+        foreach ($childrenIds as $childId) {
+            $allChildrenIds = array_merge($allChildrenIds, $this->getAllChildrenCategory($childId));
+        }
+
+        return $allChildrenIds;
     }
 }

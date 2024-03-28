@@ -11,9 +11,11 @@
        <li><a href="#">About</a></li>
        <li><a href="{{ route('product-ad-form') }}">Post an Ad</a></li>
        @guest
-        <li><a href="{{ route('user.login') }}">Login</a></li>
+            <li><a href="{{ route('user.login') }}">Cart</a></li>
+            <li><a href="{{ route('user.login') }}">Login</a></li>
        @else
-        <li class="dropdown">
+            <li><a href="{{ route('cart-items', ['userId' => auth()->id()]) }}">Cart</a></li>
+            <li class="dropdown">
             <button onclick="myFunction()" class="dropbtn">{{ auth()->user()->username }}</button>
             <div id="myDropdown" class="dropdown-content">
               <a href="{{ route('my-product-ads') }}">Dashboard</a>

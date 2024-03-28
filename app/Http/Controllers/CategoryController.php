@@ -17,14 +17,22 @@ use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
-    private $categoryRepository;
+    /**
+     * @var AdminCategoryRepositoryInterface
+     */
+    private AdminCategoryRepositoryInterface $categoryRepository;
 
+    /**
+     * @param AdminCategoryRepositoryInterface $categoryRepository
+     */
     public function __construct(AdminCategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
+
     /**
      * Display a listing of the resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -34,6 +42,8 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param Category $category
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
     public function create(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -42,9 +52,9 @@ class CategoryController extends Controller
     }
 
     /**
-     *
-     *
      * Store a newly created resource in storage.
+     * @param CategoryRequest $request
+     * @return RedirectResponse
      */
     public function store(CategoryRequest $request): RedirectResponse
     {
@@ -72,6 +82,8 @@ class CategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param string $id
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
     public function edit(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -82,6 +94,8 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param CategoryRequest $request
+     * @return RedirectResponse
      */
     public function update(CategoryRequest $request): RedirectResponse
     {
@@ -90,6 +104,8 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string $id
+     * @return RedirectResponse
      */
     public function destroy(string $id): RedirectResponse
     {
@@ -116,8 +132,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Getting paginated child category
-     *
+     * Getting paginated child categorys
      * @param string $parentId
      * @return JsonResponse
      */

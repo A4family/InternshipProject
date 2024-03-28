@@ -11,10 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path');
-            $table->morphs('imageable');
+
+            $table->unsignedBigInteger('buyer_id');
+            $table->foreign('buyer_id')->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->decimal('total_amount', 8, 2);
+            $table->string('status')->default('pending');
+
             $table->timestamps();
         });
     }
@@ -24,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('orders');
     }
 };

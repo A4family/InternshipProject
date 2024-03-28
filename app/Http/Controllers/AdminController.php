@@ -15,13 +15,21 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-    private $authService;
+    /**
+     * @var AuthService
+     */
+    private AuthService $authService;
+
+    /**
+     * @param AuthService $authService
+     */
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
     }
-    //display login form
+
     /**
+     * Login form
      * @throws \Exception
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -35,7 +43,11 @@ class AdminController extends Controller
         }
     }
 
-    //login module
+    /**
+     * Authenticate Admin
+     * @param LoginRequest $request
+     * @return Application|Redirector|\Illuminate\Contracts\Foundation\Application|RedirectResponse
+     */
     public function login(LoginRequest $request): Application|Redirector|\Illuminate\Contracts\Foundation\Application|RedirectResponse
     {
         try {
@@ -54,7 +66,11 @@ class AdminController extends Controller
     }
 
 
-    //logout module
+    /**
+     * Logout Admin
+     * @return Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+     * @throws \Exception
+     */
     public function logout(): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         try {

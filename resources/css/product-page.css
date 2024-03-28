@@ -77,6 +77,11 @@ section{
     width: 30%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 
 /*Comments section css*/
 .comments-container {
@@ -155,4 +160,6 @@ section{
     text-decoration: underline;
     color: #007bff;
 }
+
+
 

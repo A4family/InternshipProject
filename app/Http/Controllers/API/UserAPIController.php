@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
@@ -53,6 +54,12 @@ class  UserAPIController extends Controller
         //
     }
 
+
+    /**
+     * Authenticate User
+     * @param LoginRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|Application|\Illuminate\Http\Response
+     */
     public function loginUser(LoginRequest $request)//: Application|\Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {
         if (Auth::attempt($request->all())){
@@ -62,6 +69,10 @@ class  UserAPIController extends Controller
         return Response(['status' => 401, 'token' => null], 200);
     }
 
+    /**
+     * Get User Details
+     * @return \Illuminate\Contracts\Foundation\Application|ResponseFactory|Application|\Illuminate\Http\Response
+     */
     public function getUserDetail()//: Application|\Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {
         $userCheck = Auth::guard('api_user')->check();

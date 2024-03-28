@@ -1,0 +1,93 @@
+.banner-container{
+    padding: 10px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eeefef;
+}
+
+.checkout-container{
+    padding: 10px;
+    width: 1500px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+}
+
+.item-container{
+    padding: 10px;
+    width: 75%;
+
+}
+
+.utility-container{
+    padding: 10px;
+}
+
+
+.cart-item-banner{
+    padding: 10px;
+    width: 1000px;
+    height: 120px;
+    margin-bottom: 10px;
+    border: black 1px solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-item-img>img{
+    width: 100px;
+    height: 80px;
+}
+.cart-item-info{
+    width: 70%;
+    font-size: 110%;
+}
+
+.cart-item-util>form>input{
+    margin-top: 5px;
+}
+
+.error-message{
+    color: red;
+}
+
+.utility-container{
+    padding: 10px;
+}
+.total-amount-container{
+    padding: 10px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.total-amount-container>span{
+    color: red;
+}
+
+.checkout-button{
+    padding: 10px;
+    width: 300px;
+}
+
+.checkout-button>button{
+    padding: 10px;
+    width: 250px;
+    cursor: pointer;
+    border: none;
+    background: #007bff;
+    color: white;
+}
+
+*::-webkit-scrollbar {
+    width: 8px; /* Adjust this value to make the scrollbar thinner or thicker */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #888; /* Change this to your desired color */
+}

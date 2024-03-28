@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -6,12 +7,19 @@ use App\Http\Requests\ProductCommentRequest;
 use App\Models\Comment;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
+    /**
+     * @var CommentRepositoryInterface
+     */
     private $commentInterface;
 
+    /**
+     * @param CommentRepositoryInterface $commentInterface
+     */
     public function __construct(CommentRepositoryInterface $commentInterface)
     {
         $this->commentInterface = $commentInterface;
@@ -34,11 +42,13 @@ class CommentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param ProductCommentRequest $request
+     * @return RedirectResponse
      */
     public function store(ProductCommentRequest $request): RedirectResponse
     {
-//        dd($request->toArray());
         try {
+            DB::beginTransaction();
             $imageName = null;
             $imagePath = null;
             if ($request->hasFile('comment_image')){
@@ -48,11 +58,11 @@ class CommentController extends Controller
 
             $request->merge(['image_path' => $imagePath]);
 
-//            dd($request->all());
-
             $this->commentInterface->store($request->all());
+            DB::commit();
             return redirect()->back()->with('message', 'Comment Posted.');
         }catch (\Exception $e){
+            DB::rollBack();
             Log::error('Caught Exception: '. $e);
             return redirect()->back()->with('message', $e->getMessage());
         }

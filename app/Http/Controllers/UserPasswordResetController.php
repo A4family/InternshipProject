@@ -62,6 +62,7 @@ class UserPasswordResetController extends Controller
     }
 
     /**
+     * Display form for new password
      * @param string $token
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      * @throws \Exception
@@ -79,6 +80,7 @@ class UserPasswordResetController extends Controller
 
 
     /**
+     * Store new password
      * @param ResetPasswordRequest $request
      * @return string|RedirectResponse
      * @throws \Exception
@@ -97,7 +99,7 @@ class UserPasswordResetController extends Controller
         return redirect()->route('user.login')->with('message', 'Password successfully updated!!');
         }catch(\Exception $e){
             Log::error('Caught Exception: ' . $e->getMessage());
-            Log::error('Exception details: ' . json_encode($e->getTrace(), JSON_PRETTY_PRINT));
+            Log::error('Exception details: ' . $e);
             throw $e;
         }
     }

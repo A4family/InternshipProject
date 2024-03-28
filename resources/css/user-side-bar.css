@@ -27,12 +27,12 @@
     margin-bottom: 10px;
 }
 
-.grandchild-anchor:hover{
+.parent-category-container>a, .sub-category-container>a, .grandchild-anchor:hover{
     background-color: white;
     color: #1e232b;
 }
 
-.grandchild-anchor>a{
+.parent-category-container>a, .sub-category-container>a, .grandchild-anchor>a{
     text-decoration: none;
     color: white;
 }
